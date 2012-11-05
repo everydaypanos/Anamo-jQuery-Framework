@@ -17,6 +17,7 @@
 	
 	$.mvc1 = function() {
 		this.version = '1.1.3';
+		var parent = this;
 		//this.parent = this;// = Object.freeze({'nt': this}); PRIVATE
 		
 		
@@ -189,7 +190,7 @@
 				this.templateXhr = null;
 				this.controllerXhr = null;
 				
-				this.$DOMData = null;
+				this.$domData = null;
 				this.loadData = null;
 				
 				// Clear page events
@@ -199,7 +200,7 @@
 			// This is called when View AND/OR Template are ready
 			this.pageReady = function() {
 				// Empty DOM
-				$(this.contentContainer).empty();
+				$(parent.layout.contentContainer).empty();
 				
 				// Parse
 				if(typeof(this.$domData) != 'undefined' && typeof(this.domParser) != 'undefined') {
@@ -208,11 +209,11 @@
 				
 				// Update DOM
 				if(typeof(this.$domData) != 'undefined') {
-					$(this.contentContainer).append(this.$domData);console.log('DOM Updated!');
+					$(parent.layout.contentContainer).append(this.$domData);console.log('DOM Updated!');
 				}
 				
 				// Clear memory
-				this.$DOMData = null;
+				this.$domData = null;
 				
 				// Trigger ready event for page. This comes ONLY on pageReday
 				$(document).trigger('ready.pageEvents');
