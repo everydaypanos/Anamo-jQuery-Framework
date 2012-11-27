@@ -219,9 +219,9 @@
 				$(document).trigger('ready.pageEvents');
 				
 				// If controller is weirdly already loaded, then trigger a pageLoad
-				if(this.controllerIsLoaded()) {
-					this.pageLoad();
-				}
+				//if(this.controllerIsLoaded()) {
+					//this.pageLoad();
+				//}
 			};//this.pageReady
 			
 			// This is called every time a controller is loaded
