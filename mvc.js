@@ -159,11 +159,21 @@
 			this.controllerIsLoaded = function() {
 				return (typeof(this.controllerXhr) != 'undefined' && this.controllerXhr != null);
 			};
+			this.editPanes = []; // /users/[0-9]/edit: /users
+			this.uriIsEditPane = function(uri) {
+				for(var Key in this.editPanes) {
+					var matches = uri.match(new RegExp(Key, 'i'));
+					if(matches != null) {
+						return matches[0];
+					}
+				}
+				return uri;
+			};
 			
 			this.uri = null;
 			// Shorthand for uri.path. NULL if uri has problems or empty
 			this.currentPage = function() {
-				return (this.uri == null? null: (this.uri.source == null? null: this.uri.path));
+				return (this.uri == null? null: (this.uri.source == null? null: this.uriIsEditPane(this.uri.path)));
 			};
 			
 			this.$domData = null;
