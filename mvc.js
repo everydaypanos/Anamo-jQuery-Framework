@@ -16,7 +16,7 @@
 	};//$.mvc
 	
 	$.mvc1 = function() {
-		this.version = '1.1.3';
+		this.version = '1.2.0';
 		var parent = this;
 		//this.parent = this;// = Object.freeze({'nt': this}); PRIVATE
 		
@@ -36,6 +36,7 @@
 								<section#main-content>
 									<div.blabla>
 									<form|article|div.form-content.article-content.base-content>
+									<div#edit-pane-view>
 						<footer.main-footer>
 		*/
 		this.layout = new function() {
@@ -45,6 +46,7 @@
 			this.formContent = '.form-content'; // a form
 			this.articleContent = '.article-content'; // an article
 			this.baseContent = '.base-content'; // an unknown/custom area
+			this.editPane = '#edit-pane-view'; // an edit pane for a main page
 		};//this.layout
 		
 		
