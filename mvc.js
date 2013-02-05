@@ -236,6 +236,22 @@
 				//}
 			};//this.pageReady
 			
+			// This is called when editpane is ready to show
+			this.editPaneReady = function() {
+				// Empty DOM
+				$(parent.layout.contentContainer).empty();
+				
+				// check subpage
+				if(this.uriIsEditPane(this.uri.path) != this.uri.path) {
+					$(this.editPane).show();
+				} else {
+					$(this.editPane).hide();
+				}
+				
+				// Trigger ready event for page. This comes ONLY on pageReday
+				$(document).trigger('ready2.pageEvents');
+			};//this.editPaneReady
+			
 			// This is called every time a controller is loaded
 			this.pageLoad = function() {
 				// Trigger load event for page. This comes ONLY on pageLoad.
