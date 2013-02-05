@@ -163,8 +163,8 @@
 			this.uriIsEditPane = function(uri) {
 				for(var Key in this.editPanes) {
 					var matches = uri.match(new RegExp(Key, 'i'));
-					if(matches != null) {alert(matches[1]);
-						return matches[0];
+					if(matches != null) {
+						return this.editPanes[Key];
 					}
 				}
 				return uri;
