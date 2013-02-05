@@ -159,11 +159,11 @@
 			this.controllerIsLoaded = function() {
 				return (typeof(this.controllerXhr) != 'undefined' && this.controllerXhr != null);
 			};
-			this.editPanes = []; // /users/[0-9]/edit: /users
+			this.editPanes = {}; // /users/[0-9]/edit: /users
 			this.uriIsEditPane = function(uri) {
 				for(var Key in this.editPanes) {
 					var matches = uri.match(new RegExp(Key, 'i'));
-					if(matches != null) {
+					if(matches != null) {alert(matches[0]);
 						return matches[0];
 					}
 				}
