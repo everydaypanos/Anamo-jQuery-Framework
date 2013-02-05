@@ -238,9 +238,6 @@
 			
 			// This is called when editpane is ready to show
 			this.editPaneReady = function() {
-				// Empty DOM
-				$(parent.layout.contentContainer).empty();
-				
 				// check subpage
 				if(this.uriIsEditPane(this.uri.path) != this.uri.path) {
 					$(this.editPane).show();
