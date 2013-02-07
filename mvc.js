@@ -164,7 +164,7 @@
 				for(var Key in this.editPanes) {
 					var matches = path.match(new RegExp(Key, 'i'));
 					if(matches != null) {
-						return this.editPanes[Key];
+						return this.editPanes[Key].uri;
 					}
 				}
 				return path;
@@ -185,7 +185,7 @@
 					for(var Key in this.editPanes) {
 						var matches = this.uri.path.match(new RegExp(Key, 'i'));
 						if(matches != null) {
-							return Key;
+							return this.editPanes[Key].id;
 						}
 					}
 					return null;
