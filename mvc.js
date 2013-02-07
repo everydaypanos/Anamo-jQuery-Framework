@@ -185,7 +185,7 @@
 					for(var Key in this.editPanes) {
 						var matches = this.uri.path.match(new RegExp(Key, 'i'));
 						if(matches != null) {
-							currentPage = Key;
+							return Key;
 						}
 					}
 					return null;
