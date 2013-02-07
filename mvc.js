@@ -232,9 +232,13 @@
 				
 				// check subpage
 				if(this.uriIsEditPane(this.uri.path) != this.uri.path) {
-					$(this.editPane).show();
+					if($(this.editPane).css('display') != 'block') {
+						$(this.editPane).show();
+					}
 				} else {
-					$(this.editPane).hide();
+					if($(this.editPane).css('display') != 'block') {
+						$(this.editPane).hide();
+					}
 				}
 				
 				// Trigger ready event for page. This comes ONLY on pageReday
