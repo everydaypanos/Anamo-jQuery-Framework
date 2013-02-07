@@ -260,7 +260,11 @@
 			// This is called every time a controller is loaded
 			this.pageLoad = function() {
 				// Trigger load event for page. This comes ONLY on pageLoad.
-				$(document).trigger('load.pageEvents', [this.loadData]);
+				if(this.currentUriIsEditPane()) {
+					$(document).trigger('load2.pageEvents', [this.loadData]);
+				} else {
+					$(document).trigger('load.pageEvents', [this.loadData]);
+				}
 				this.loadData = null;
 			};
 			
