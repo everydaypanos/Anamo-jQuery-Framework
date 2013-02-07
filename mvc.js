@@ -230,25 +230,28 @@
 				// Trigger ready event for page. This comes ONLY on pageReday
 				$(document).trigger('ready.pageEvents');
 				
-				// check subpage
-				if(this.uriIsEditPane(this.uri.path) != this.uri.path) {
-					if($(this.editPane).css('display') != 'block') {
-						$(this.editPane).show();
-					}
-				} else {
-					if($(this.editPane).css('display') != 'block') {
-						$(this.editPane).hide();
-					}
-				}
-				
-				// Trigger ready event for page. This comes ONLY on pageReday
-				$(document).trigger('ready2.pageEvents');
-				
 				// If controller is weirdly already loaded, then trigger a pageLoad
 				//if(this.controllerIsLoaded()) {
 					//this.pageLoad();
 				//}
 			};//this.pageReady
+			
+			// This is called after pageReady OR manually.
+			this.editPaneReady = function() {
+				// check subpage
+				if(this.uriIsEditPane(this.uri.path) != this.uri.path) {
+					if($(parent.layout.editPane).is(':hidden')) {
+						$(parent.layout.editPane).show();
+					}
+				} else {
+					if(!$(parent.layout.editPane).is(':hidden')) {
+						$(parent.layout.editPane).hide();
+					}
+				}
+				
+				// Trigger ready event for page. This comes ONLY on pageReday
+				$(document).trigger('ready2.pageEvents');
+			};//this.editPaneReady
 			
 			// This is called every time a controller is loaded
 			this.pageLoad = function() {
