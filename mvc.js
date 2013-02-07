@@ -197,6 +197,7 @@
 			this.domParser = null;
 			
 			this.loadData = null;
+			this.editData = null;
 			
 			// This is called immediately after hashchange or pageload event. It resets+updates vars(currentpage)
 			this.prepare = function() {
@@ -221,6 +222,7 @@
 				
 				this.$domData = null;
 				this.loadData = null;
+				this.editData = null;
 				
 				// Clear page events
 				$(document).off('.pageEvents');
@@ -262,7 +264,8 @@
 				// Trigger load event for page. This comes ONLY on pageLoad.
 				$(document).trigger('load.pageEvents', [this.loadData]);
 				if(this.currentUriIsEditPane()) {
-					$(document).trigger('load2.pageEvents', [this.loadData]);
+					$(document).trigger('load2.pageEvents', [this.editData]);
+					this.editData = null;
 				}
 				this.loadData = null;
 			};
