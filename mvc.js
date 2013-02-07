@@ -245,32 +245,17 @@
 				this.$domData = null;
 				
 				// Trigger ready event for page. This comes ONLY on pageReday
-				$(document).trigger('ready.pageEvents');
-				
-				this.editPaneReady();
+				if(this.currentUriIsEditPane()) {
+					$(document).trigger('ready2.pageEvents');
+				} else {
+					$(document).trigger('ready.pageEvents');
+				}
 				
 				// If controller is weirdly already loaded, then trigger a pageLoad
 				//if(this.controllerIsLoaded()) {
 					//this.pageLoad();
 				//}
 			};//this.pageReady
-			
-			// This is called after pageReady OR manually.
-			this.editPaneReady = function() {
-				/*// check subpage
-				if(this.currentUriIsEditPane()) {
-					if($(parent.layout.editPane+'[data-edit-pane-id]').is(':hidden')) {
-						$(parent.layout.editPane).show();
-					}
-				} else {
-					if(!$(parent.layout.editPane).is(':hidden')) {
-						$(parent.layout.editPane).hide();
-					}
-				}*/
-				
-				// Trigger ready event for page. This comes ONLY on pageReday
-				$(document).trigger('ready2.pageEvents');
-			};//this.editPaneReady
 			
 			// This is called every time a controller is loaded
 			this.pageLoad = function() {
