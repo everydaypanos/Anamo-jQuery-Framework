@@ -245,10 +245,10 @@
 				this.$domData = null;
 				
 				// Trigger ready event for page. This comes ONLY on pageReday
+				$(document).trigger('ready.pageEvents');
+				
 				if(this.currentUriIsEditPane()) {
 					$(document).trigger('ready2.pageEvents');
-				} else {
-					$(document).trigger('ready.pageEvents');
 				}
 				
 				// If controller is weirdly already loaded, then trigger a pageLoad
@@ -260,10 +260,9 @@
 			// This is called every time a controller is loaded
 			this.pageLoad = function() {
 				// Trigger load event for page. This comes ONLY on pageLoad.
+				$(document).trigger('load.pageEvents', [this.loadData]);
 				if(this.currentUriIsEditPane()) {
 					$(document).trigger('load2.pageEvents', [this.loadData]);
-				} else {
-					$(document).trigger('load.pageEvents', [this.loadData]);
 				}
 				this.loadData = null;
 			};
