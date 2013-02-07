@@ -230,6 +230,8 @@
 				// Trigger ready event for page. This comes ONLY on pageReday
 				$(document).trigger('ready.pageEvents');
 				
+				this.editPaneReady();
+				
 				// If controller is weirdly already loaded, then trigger a pageLoad
 				//if(this.controllerIsLoaded()) {
 					//this.pageLoad();
