@@ -230,14 +230,6 @@
 				// Trigger ready event for page. This comes ONLY on pageReday
 				$(document).trigger('ready.pageEvents');
 				
-				// If controller is weirdly already loaded, then trigger a pageLoad
-				//if(this.controllerIsLoaded()) {
-					//this.pageLoad();
-				//}
-			};//this.pageReady
-			
-			// This is called when editpane is ready to show
-			this.editPaneReady = function() {
 				// check subpage
 				if(this.uriIsEditPane(this.uri.path) != this.uri.path) {
 					$(this.editPane).show();
@@ -247,7 +239,12 @@
 				
 				// Trigger ready event for page. This comes ONLY on pageReday
 				$(document).trigger('ready2.pageEvents');
-			};//this.editPaneReady
+				
+				// If controller is weirdly already loaded, then trigger a pageLoad
+				//if(this.controllerIsLoaded()) {
+					//this.pageLoad();
+				//}
+			};//this.pageReady
 			
 			// This is called every time a controller is loaded
 			this.pageLoad = function() {
