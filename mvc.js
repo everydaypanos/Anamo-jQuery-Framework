@@ -159,21 +159,38 @@
 			this.controllerIsLoaded = function() {
 				return (typeof(this.controllerXhr) != 'undefined' && this.controllerXhr != null);
 			};
-			this.editPanes = {}; // /users/[0-9]/edit: /users
-			this.uriIsEditPane = function(uri) {
+			this.editPanes = {}; // /users/[0-9]/edit: /users(id: <attribute_data-edit-pane-id_of_pane>)
+			this.matchPathAgainstEditPanes = function(path) {// we pass in '/path/to/page/<fakeid>/<bla>/<bla>' and we get either a proper page or same value
 				for(var Key in this.editPanes) {
-					var matches = uri.match(new RegExp(Key, 'i'));
+					var matches = path.match(new RegExp(Key, 'i'));
 					if(matches != null) {
-						return this.editPanes[Key].uri;
+						return this.editPanes[Key];
 					}
 				}
-				return uri;
+				return path;
+			};
+			this.currentUriIsEditPane = function() {// If returned value is same with path then this is NOT edit pane
+				return (this.matchPathAgainstEditPanes(this.uri.path) != this.uri.path);
 			};
 			
 			this.uri = null;
-			// Shorthand for uri.path. NULL if uri has problems or empty
+			// Shorthand for uri.path. NULL if uri has problems or empty. If editPane returns Page!
 			this.currentPage = function() {
-				return (this.uri == null? null: (this.uri.source == null? null: this.uriIsEditPane(this.uri.path)));
+				return (this.uri == null? null: (this.uri.source == null? null: this.matchPathAgainstEditPanes(this.uri.path)));
+			};
+			// Check if uri.path belongs to a registered editPane. NULL if uri has problems or empty
+			this.currentEditPane = function() {
+				var currentPage = this.currentPage();
+				if(currentPage != null) {
+					for(var Key in this.editPanes) {
+						var matches = this.uri.path.match(new RegExp(Key, 'i'));
+						if(matches != null) {
+							currentPage = Key;
+						}
+					}
+					return null;
+				}
+				return currentPage;
 			};
 			
 			this.$domData = null;
@@ -240,16 +257,16 @@
 			
 			// This is called after pageReady OR manually.
 			this.editPaneReady = function() {
-				// check subpage
-				if(this.uriIsEditPane(this.uri.path) != this.uri.path) {
-					if($(parent.layout.editPane).is(':hidden')) {
+				/*// check subpage
+				if(this.currentUriIsEditPane()) {
+					if($(parent.layout.editPane+'[data-edit-pane-id]').is(':hidden')) {
 						$(parent.layout.editPane).show();
 					}
 				} else {
 					if(!$(parent.layout.editPane).is(':hidden')) {
 						$(parent.layout.editPane).hide();
 					}
-				}
+				}*/
 				
 				// Trigger ready event for page. This comes ONLY on pageReday
 				$(document).trigger('ready2.pageEvents');
