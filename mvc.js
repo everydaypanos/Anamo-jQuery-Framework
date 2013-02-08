@@ -37,7 +37,10 @@
 		this.nav = new function() {
 			this.settings = {
 				'isDebugMode': true,
-				'viewsUri': null,
+				'scriptName': '',
+				'apiBaseUri': '',
+				'viewsUri': '',
+				'templatesUri': '',
 				'domParser': function() {},
 				'subStates': {}
 			};
