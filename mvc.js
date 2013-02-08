@@ -15,6 +15,181 @@
 		}
 	};//$.mvc
 	
+	// https://sites.google.com/a/anamo.eu/adn/projects/anamo-jquery-framework/mvc/ver
+	$.mvc2 = function() {
+		this.version = '2.0';
+		
+		var parent = this;
+		Object.freeze(parent);
+		
+		
+		this.layout = new function() {
+			this.contentContainer = '#content';
+			this.contentSubnav = '#content-subnav';
+			this.mainContent = '#main-content';
+			this.formContent = '.form-content';
+			this.articleContent = '.article-content';
+			this.baseContent = '.base-content';
+			this.editPane = '#edit-pane-view';
+		};//this.layout
+		
+		
+		this.nav = new function() {
+			this.settings = {
+				'isDebugMode': true,
+				'viewsUri': null,
+				'domParser': function() {},
+				'subStates': {}
+			};
+			
+			this.viewXhr = null;
+			this.templateXhr = null;
+			this.controllerXhr = null;
+			this.controller2Xhr = null;
+			
+			this.uri = null;
+			
+			this.$domData = null;
+			
+			this.loadData = null;
+			
+			this.stateChange = function(newState, params) {
+				// Abort view, template, controller XHRs
+				if($.isset(this.viewXhr)) {
+					this.viewXhr.abort();
+				}
+				if($.isset(this.templateXhr)) {
+					this.templateXhr.abort();
+				}
+				if($.isset(this.controllerXhr)) {
+					this.controllerXhr.abort();
+				}
+				if($.isset(this.controller2Xhr)) {
+					this.controller2Xhr.abort();
+				}
+				
+				// Reset all others
+				this.viewXhr = null;
+				this.templateXhr = null;
+				this.controllerXhr = null;
+				this.controller2Xhr = null;
+				
+				this.$domData = null;
+				this.loadData = null;
+				
+				// Clear page events
+				$(document).off('.pageEvents');
+				
+				// This is called when View AND/OR Template are ready
+				pageReady = function() {
+					// Empty DOM
+					$(parent.layout.contentContainer).empty();
+					
+					// Update DOM
+					if($.isset(this.$domData)) {
+						$(parent.layout.contentContainer).append(this.$domData);
+						
+						if(this.isDebugMode) {
+							console.log('DOM Updated!');
+						}
+					}
+					
+					// Clear memory
+					this.$domData = null;
+					
+					// Trigger ready event for page. This comes ONLY on pageReday
+					$(document).trigger('ready.pageEvents');
+					
+					// If controller is weirdly already loaded, then trigger a pageLoad
+					if(!$.isset(this.controllerXhr)) {
+						pageLoad();
+					}
+				};//pageReady
+				
+				// This is called every time a controller is loaded
+				pageLoad = function() {
+					// Trigger load event for page. This comes ONLY on pageLoad.
+					$(document).trigger('load.pageEvents', [this.loadData]);
+					
+					this.loadData = null;
+					
+					
+					
+					
+				};//pageLoad
+				
+				// Fetch view
+				this.viewXhr = $.ajax({
+					url: this.settings.viewsUri+'?q='+newState,
+					dataType: 'script',
+					success: function(data, textStatus, jqXHR) {
+						if(parent.isDebugMode) {
+							console.log('view found!');
+						}
+					},
+					complete: function(jqXHR, textStatus) {
+						// Complete Step 1
+						if(!$.isset(parent.templateXhr)) {
+							parent.pageReady();
+						}
+					}
+				});//this.viewXhr
+				
+				// Don't wait, fetch template of new page
+				this.templateXhr = $.get(this.settings.templatesUri+'?p='+newState, function(data) {
+					// Successful AJAX req.
+					parent.$domData = $(data);
+					
+					if(parent.isDebugMode) {
+						console.log('template found!');
+					}
+					
+					// Parse
+					if($.isset(parent.settings.domParser)) {
+						parent.settings.domParser();
+					}
+					
+					// Complete Step 1
+					if(!$.isset(parent.viewXhr)) {
+						parent.pageReady();
+					}
+				});//this.templateXhr
+				
+				// Don't wait, fetch controller of new page
+				this.controllerXhr = $.postJSON(this.settings.apiBaseUri+newState+'.load', params, function(data) {
+					parent.loadData = data;
+					
+					if(parent.isDebugMode) {
+						console.log('controller found!');
+					}
+			
+					if(!$.isset(parent.viewXhr) && !$.isset(parent.templateXhr)) {
+						parent.pageLoad();
+					}
+				});//this.controllerXhr
+				
+			};//this.stateChange
+			
+			
+			this.subStateChange = function(newState, params) {
+				// Fetch controller of edit pane
+				this.controller2Xhr = $.postJSON(this.settings.apiBaseUri+newState+'.load', params, function(data) {
+					if(parent.isDebugMode) {
+						console.log('controller found!');
+					}
+			
+					// Trigger load event for page. This comes ONLY on pageLoad.
+					$(document).trigger('load2.pageEvents', data);
+				});//this.controller2Xhr
+			};//this.subStateChange
+			
+		};//App.Navigation
+		
+	};//$.mvc2
+	
+	
+	
+	
 	$.mvc1 = function() {
 		this.version = '1.2.0';
 		var parent = this;
