@@ -154,7 +154,7 @@
 					
 					// Complete Step 1
 					if(!$.isset(parent.viewXhr)) {
-						parent.pageReady();
+						pageReady();
 					}
 				});//this.templateXhr
 				
@@ -167,7 +167,7 @@
 					}
 			
 					if(!$.isset(parent.viewXhr) && !$.isset(parent.templateXhr)) {
-						parent.pageLoad();
+						pageLoad();
 					}
 				});//this.controllerXhr
 				
