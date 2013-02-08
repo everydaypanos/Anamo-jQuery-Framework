@@ -10,6 +10,8 @@
 		create: function(version) {
 			if(version == 1) {
 				$.extend(this, new $.mvc1());
+			} else if(version == 2) {
+				$.extend(this, new $.mvc2());
 			}
 			return this;
 		}
