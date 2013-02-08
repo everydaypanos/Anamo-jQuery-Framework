@@ -139,7 +139,7 @@
 				});//this.viewXhr
 				
 				// Don't wait, fetch template of new page
-				this.templateXhr = $.get(this.settings.templatesUri+'?p='+newState, function(data) {
+				this.templateXhr = $.get(this.settings.templatesUri+'?q='+newState, function(data) {
 					// Successful AJAX req.
 					parent.$domData = $(data);
 					
