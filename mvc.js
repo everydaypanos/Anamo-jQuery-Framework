@@ -22,8 +22,6 @@
 		this.version = '2.0';
 		
 		var parent = this;
-		Object.freeze(parent);
-		
 		
 		this.layout = new function() {
 			this.contentContainer = '#content';
@@ -185,7 +183,9 @@
 				});//this.controller2Xhr
 			};//this.subStateChange
 			
-		};//App.Navigation
+		};//this.nav
+		
+		Object.freeze(parent);
 		
 	};//$.mvc2
 	
