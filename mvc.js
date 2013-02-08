@@ -188,7 +188,7 @@
 			
 		};//this.nav
 		
-		//Object.freeze(parent);
+		Object.freeze(parent);
 		
 	};//$.mvc2
 	
