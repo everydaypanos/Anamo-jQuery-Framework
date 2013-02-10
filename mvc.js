@@ -133,7 +133,7 @@
 					complete: function(jqXHR, textStatus) {
 						// Complete Step 1
 						if(!$.isset(parent.templateXhr)) {
-							parent.pageReady();
+							pageReady();
 						}
 					}
 				});//this.viewXhr
