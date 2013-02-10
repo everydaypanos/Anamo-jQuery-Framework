@@ -131,6 +131,8 @@
 						}
 					},
 					complete: function(jqXHR, textStatus) {
+						parent.viewXhr = null;
+						
 						// Complete Step 1
 						if(!$.isset(parent.templateXhr)) {
 							pageReady();
@@ -156,6 +158,9 @@
 					if(!$.isset(parent.viewXhr)) {
 						pageReady();
 					}
+				})
+				.always(function() {
+					parent.templateXhr = null;
 				});//this.templateXhr
 				
 				// Don't wait, fetch controller of new page
@@ -169,6 +174,9 @@
 					if(!$.isset(parent.viewXhr) && !$.isset(parent.templateXhr)) {
 						pageLoad();
 					}
+				})
+				.always(function() {
+					parent.controllerXhr = null;
 				});//this.controllerXhr
 				
 			};//this.stateChange
@@ -183,12 +191,15 @@
 			
 					// Trigger load event for page. This comes ONLY on pageLoad.
 					$(document).trigger('load2.pageEvents', data);
+				})
+				.always(function() {
+					parent.controller2Xhr = null;
 				});//this.controller2Xhr
 			};//this.subStateChange
 			
 		};//this.nav
 		
-		//Object.freeze(parent);
+		Object.freeze(parent);
 		
 	};//$.mvc2
 	
