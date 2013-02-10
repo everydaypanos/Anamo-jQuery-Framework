@@ -148,8 +148,8 @@
 					}
 					
 					// Parse
-					if($.isset(parent.settings.domParser)) {
-						parent.settings.domParser();
+					if($.isset(parent.nav.settings.domParser)) {
+						parent.nav.settings.domParser();
 					}
 					
 					// Complete Step 1
