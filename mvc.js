@@ -109,7 +109,7 @@
 				};//pageReady
 				
 				// This is called every time a controller is loaded
-				pageLoad = function() {
+				pageLoad = function() {alert('pageLoad');
 					// Trigger load event for page. This comes ONLY on pageLoad.
 					$(document).trigger('load.pageEvents', [this.loadData]);
 					
@@ -160,9 +160,7 @@
 				
 				// Don't wait, fetch controller of new page
 				this.controllerXhr = $.postJSON(this.settings.apiBaseUri+newState+'.load', params, function(data) {
-					alert($.varDump(data));
 					parent.nav.loadData = data;
-					alert($.varDump(parent.nav.loadData));
 					
 					if(parent.nav.settings.isDebugMode) {
 						console.log('controller found!');
