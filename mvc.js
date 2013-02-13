@@ -109,7 +109,7 @@
 				};//pageReady
 				
 				// This is called every time a controller is loaded
-				pageLoad = function() {alert('pageLoad');
+				pageLoad = function() {alert('test.pageLoad');
 					// Trigger load event for page. This comes ONLY on pageLoad.
 					$(document).trigger('load.pageEvents', [this.loadData]);
 					
@@ -166,7 +166,7 @@
 						console.log('controller found!');
 					}
 			
-					if(!$.isset(parent.nav.viewXhr) && !$.isset(parent.nav.templateXhr)) {
+					if(!$.isset(parent.nav.viewXhr) && !$.isset(parent.nav.templateXhr)) {alert('test.toStartpageLoad1');
 						pageLoad();
 					}
 				})
