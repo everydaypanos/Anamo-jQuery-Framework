@@ -88,23 +88,23 @@
 					$(parent.layout.contentContainer).empty();
 					
 					// Update DOM
-					if($.isset(this.$domData)) {
-						$(parent.layout.contentContainer).append(this.$domData);
+					if($.isset(parent.nav.$domData)) {
+						$(parent.layout.contentContainer).append(parent.nav.$domData);
 						
-						if(this.settings.isDebugMode) {
+						if(parent.nav.settings.isDebugMode) {
 							console.log('DOM Updated!');
 						}
 					}
 					
 					// Clear memory
-					this.$domData = null;
+					parent.nav.$domData = null;
 					
 					// Trigger ready event for page. This comes ONLY on pageReday
 					$(document).trigger('ready.pageEvents');
 					
 					// If controller is weirdly already loaded, then trigger a pageLoad
-					console.log('test.'+$.isset(this.controllerXhr));
-					if(!$.isset(this.controllerXhr)) {
+					console.log('test.'+$.isset(parent.nav.controllerXhr));
+					if(!$.isset(parent.nav.controllerXhr)) {
 						pageLoad();
 					}
 				};//pageReady
@@ -112,9 +112,9 @@
 				// This is called every time a controller is loaded
 				pageLoad = function() {alert('test.pageLoad');
 					// Trigger load event for page. This comes ONLY on pageLoad.
-					$(document).trigger('load.pageEvents', [this.loadData]);
+					$(document).trigger('load.pageEvents', [parent.nav.loadData]);
 					
-					this.loadData = null;
+					parent.nav.loadData = null;
 				};//pageLoad
 				
 				// Fetch view
