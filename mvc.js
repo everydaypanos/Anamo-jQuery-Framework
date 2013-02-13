@@ -162,6 +162,7 @@
 				this.controllerXhr = $.postJSON(this.settings.apiBaseUri+newState+'.load', params, function(data) {
 					alert($.varDump(data));
 					parent.nav.loadData = data;
+					alert($.varDump(parent.nav.loadData));
 					
 					if(parent.nav.settings.isDebugMode) {
 						console.log('controller found!');
