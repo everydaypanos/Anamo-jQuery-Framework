@@ -100,7 +100,7 @@
 					parent.nav.$domData = null;
 					
 					// Trigger ready event for page. This comes ONLY on pageReday
-					$(document).trigger('ready.pageEvents');
+					$(document).trigger('mvc-ready').trigger('ready.pageEvents');
 					
 					// If controller is weirdly already loaded, then trigger a pageLoad
 					if(!$.isset(parent.nav.controllerXhr)) {
@@ -111,7 +111,7 @@
 				// This is called every time a controller is loaded
 				pageLoad = function() {
 					// Trigger load event for page. This comes ONLY on pageLoad.
-					$(document).trigger('load.pageEvents', [parent.nav.loadData]);
+					$(document).trigger('mvc-load').trigger('load.pageEvents', [parent.nav.loadData]);
 					
 					parent.nav.loadData = null;
 				};//pageLoad
@@ -184,7 +184,7 @@
 					}
 			
 					// Trigger load event for page. This comes ONLY on pageLoad.
-					$(document).trigger('load2.pageEvents', data);
+					$(document).trigger('mvc-load2').trigger('load2.pageEvents', data);
 				})
 				.always(function() {
 					parent.nav.controller2Xhr = null;
