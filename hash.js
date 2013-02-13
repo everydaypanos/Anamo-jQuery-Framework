@@ -13,7 +13,7 @@
 (function($) {
 	$.hash = function(customHash, options) {
 		var defaults = {  
-			hashbang: '#!/'
+			hashbang: '#/'
 		};
 		var options = $.extend(defaults, options || {});
 	

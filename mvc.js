@@ -42,7 +42,7 @@
 				'viewsUri': '',
 				'templatesUri': '',
 				'domParser': function() {},
-				'subStates': []
+				'subStates': {}
 			};
 			
 			this.viewXhr = null;
