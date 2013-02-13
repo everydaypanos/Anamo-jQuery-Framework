@@ -177,6 +177,11 @@
 			
 			
 			this.subStateChange = function(newState, params) {
+				if($.isset(this.controller2Xhr)) {
+					this.controller2Xhr.abort();
+				}
+				this.controller2Xhr = null;
+				
 				// Fetch controller of edit pane
 				this.controller2Xhr = $.postJSON(this.settings.apiBaseUri+newState+'.load', params, function(data) {
 					if(parent.nav.settings.isDebugMode) {
