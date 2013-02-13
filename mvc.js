@@ -160,6 +160,7 @@
 				
 				// Don't wait, fetch controller of new page
 				this.controllerXhr = $.postJSON(this.settings.apiBaseUri+newState+'.load', params, function(data) {
+					alert($.varDump(data));
 					parent.nav.loadData = data;
 					
 					if(parent.nav.settings.isDebugMode) {
@@ -181,7 +182,7 @@
 				// Fetch controller of edit pane
 				this.controller2Xhr = $.postJSON(this.settings.apiBaseUri+newState+'.load', params, function(data) {
 					if(parent.nav.settings.isDebugMode) {
-						console.log('controller found!');
+						console.log('controller found! (2)');
 					}
 			
 					// Trigger load event for page. This comes ONLY on pageLoad.
