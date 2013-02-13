@@ -103,6 +103,7 @@
 					$(document).trigger('ready.pageEvents');
 					
 					// If controller is weirdly already loaded, then trigger a pageLoad
+					console.log('test.'+$.isset(this.controllerXhr));
 					if(!$.isset(this.controllerXhr)) {
 						pageLoad();
 					}
@@ -165,8 +166,8 @@
 					if(parent.nav.settings.isDebugMode) {
 						console.log('controller found!');
 					}
-			
-					if(!$.isset(parent.nav.viewXhr) && !$.isset(parent.nav.templateXhr)) {alert('test.toStartpageLoad1');
+					console.log('test.'+$.isset(parent.nav.viewXhr)+'----'+$.isset(parent.nav.templateXhr));
+					if(!$.isset(parent.nav.viewXhr) && !$.isset(parent.nav.templateXhr)) {
 						pageLoad();
 					}
 				})
