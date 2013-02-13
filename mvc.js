@@ -160,6 +160,7 @@
 				});//this.templateXhr
 				
 				// Don't wait, fetch controller of new page
+				console.log('test.controllerstart!!');
 				this.controllerXhr = $.postJSON(this.settings.apiBaseUri+newState+'.load', params, function(data) {
 					parent.nav.loadData = data;
 					
@@ -172,6 +173,7 @@
 					}
 				})
 				.always(function() {
+					console.log('test.controllerdone!!');
 					parent.nav.controllerXhr = null;
 				});//this.controllerXhr
 				
