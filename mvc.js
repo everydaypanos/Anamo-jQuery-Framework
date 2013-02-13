@@ -103,14 +103,13 @@
 					$(document).trigger('ready.pageEvents');
 					
 					// If controller is weirdly already loaded, then trigger a pageLoad
-					console.log('test.'+$.isset(parent.nav.controllerXhr));
 					if(!$.isset(parent.nav.controllerXhr)) {
 						pageLoad();
 					}
 				};//pageReady
 				
 				// This is called every time a controller is loaded
-				pageLoad = function() {alert('test.pageLoad');
+				pageLoad = function() {
 					// Trigger load event for page. This comes ONLY on pageLoad.
 					$(document).trigger('load.pageEvents', [parent.nav.loadData]);
 					
@@ -160,20 +159,17 @@
 				});//this.templateXhr
 				
 				// Don't wait, fetch controller of new page
-				console.log('test.controllerstart!!');
 				this.controllerXhr = $.postJSON(this.settings.apiBaseUri+newState+'.load', params, function(data) {
 					parent.nav.loadData = data;
 					
 					if(parent.nav.settings.isDebugMode) {
 						console.log('controller found!');
 					}
-					console.log('test.'+$.isset(parent.nav.viewXhr)+'----'+$.isset(parent.nav.templateXhr));
 					if(!$.isset(parent.nav.viewXhr) && !$.isset(parent.nav.templateXhr)) {
 						pageLoad();
 					}
 				})
 				.always(function() {
-					console.log('test.controllerdone!!');
 					parent.nav.controllerXhr = null;
 				});//this.controllerXhr
 				
