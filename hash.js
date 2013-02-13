@@ -37,7 +37,7 @@
 					throw new Error();
 				}
 				
-				preHash = preHash.substring(3);
+				preHash = preHash.substring(options.hashbang.length);
 				
 				var indexOfQuestonMark = preHash.indexOf('?');
 				if(indexOfQuestonMark > -1) {
