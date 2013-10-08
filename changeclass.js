@@ -5,14 +5,24 @@
  *
  * http://static.anamo.eu/3/ajq.js
  */
- (function ($) {
-	$.changeClass = function(what, condition) {
-			
-			if(condition) {
-				return this.addClass(what);
-			} else {
-				return this.removeClass(what);
-			}
-			
-	};
-})(jQuery);
+(function ( $ ) {
+ 
+    $.fn.changeClass = function( className, author, options ) {
+ 
+        // This is the easiest way to have default options.
+        var settings = $.extend({
+            // These are the defaults.
+            //color: "#556b2f",
+            //backgroundColor: "white"
+        }, options );
+ 
+        // Greenify the collection based on the settings variable.
+				if($.isset(author) && author === true) {
+					return this.addClass(className);
+				} else {
+					return this.removeClass(className);
+				}
+ 
+    };
+ 
+}( jQuery ));
