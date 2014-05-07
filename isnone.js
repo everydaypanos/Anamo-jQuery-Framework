@@ -18,7 +18,7 @@
   @return {Boolean}
 	*/
 (function($) {
-	$.isset = function(obj) {
-		return !jQuery.isNone(obj);
+	$.isNone = function(obj) {
+		return typeof obj == 'undefined' || obj === null;
 	};
 })(jQuery);
