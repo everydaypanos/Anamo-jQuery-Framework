@@ -16,7 +16,7 @@
   ```
 
   @method isEmpty
-  @for Ember
+  @for jQuery
   @param {Object} obj Value to test
   @return {Boolean}
 	*/

@@ -13,7 +13,7 @@
   ```
 
   @method isNone
-  @for Ember
+  @for jQuery
   @param {Object} obj Value to test
   @return {Boolean}
 	*/

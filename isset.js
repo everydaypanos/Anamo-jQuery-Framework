@@ -1,19 +1,17 @@
 /**
-  Returns true if the passed value is null or undefined. This avoids errors
-  from JSLint complaining about use of ==, which can be technically
-  confusing.
+  Opposite of isNone.
 
   ```javascript
-  jQuery.isNone();              // true
-  jQuery.isNone(null);          // true
-  jQuery.isNone(undefined);     // true
-  jQuery.isNone('');            // false
-  jQuery.isNone([]);            // false
-  jQuery.isNone(function() {});  // false
+  jQuery.isset();              // false
+  jQuery.isset(null);          // false
+  jQuery.isset(undefined);     // false
+  jQuery.isset('');            // true
+  jQuery.isset([]);            // true
+  jQuery.isset(function() {});  // true
   ```
 
   @method isNone
-  @for Ember
+  @for isset
   @param {Object} obj Value to test
   @return {Boolean}
 	*/
